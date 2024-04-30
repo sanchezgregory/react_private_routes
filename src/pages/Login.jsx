@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
-import { REGISTER } from '../config/routes/routes'
+import {useState} from 'react'
+import {Link, useNavigate, useLocation,} from 'react-router-dom'
+import { ADMIN, REGISTER } from '../config/routes/routes'
 import { useAuthContext } from '../contexts/authContext'
 
 export const Login = () =>  {
 
   const {login} = useAuthContext()
+  const navigate = useNavigate()
+  //const {state} = useLocation()
+
 
   let initialFormData = {
     username:'',
@@ -24,13 +27,14 @@ export const Login = () =>  {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    login(data)
+    login()
+    navigate(ADMIN)
   } 
 
   return (
     <div className="login">
       <h4>Login</h4>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e)=> {handleSubmit(e)}}>
         <div className="text_area">
           <input
             type="text"
@@ -55,7 +59,6 @@ export const Login = () =>  {
           type="submit"
           value="LOGIN"
           className="btn-login-register"
-
         />
       </form>
 

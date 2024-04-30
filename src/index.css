@@ -15,12 +15,6 @@ nav {
   background: black;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.19);
   min-width: 250px;
-  /* color: #fff;
-  padding: 2em;
-  margin-bottom: 20px;
-  display: flex;
-  flex-flow: row nowrap;
-  margin-left: 0px !important; */
 }
 
 nav ul {
@@ -33,6 +27,7 @@ nav ul {
 
 nav li {
   height: 50px;
+  color:white;
 }
 
 nav a {
@@ -160,7 +155,7 @@ form{
   }
 }
 
-@media(max-width:400px) {
+@media(max-width:450px) {
   .sidebar{
     width: 100%;
   } 

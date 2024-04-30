@@ -7,8 +7,7 @@ export const Login = () =>  {
 
   const {login} = useAuthContext()
   const navigate = useNavigate()
-  //const {state} = useLocation()
-
+  const referal = useLocation()
 
   let initialFormData = {
     username:'',
@@ -28,7 +27,9 @@ export const Login = () =>  {
   const handleSubmit = (e) => {
     e.preventDefault()
     login()
-    navigate(ADMIN)
+    const redirectTo = referal?.state?.location?.pathname ?? ADMIN
+    console.log(redirectTo)
+    navigate(redirectTo)
   } 
 
   return (

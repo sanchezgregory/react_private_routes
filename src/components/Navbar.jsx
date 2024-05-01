@@ -1,6 +1,6 @@
 
 import {Link} from 'react-router-dom'
-import { ADMIN, HOME, LOGIN, WEATHER, REGISTER } from '../config/routes/routes'
+import { ADMIN, HOME, LOGIN, WEATHER, REGISTER, POSTS } from '../config/routes/routes'
 import { useAuthContext } from '../contexts/authContext'
 import { useState } from 'react'
 
@@ -43,7 +43,8 @@ export const Navbar = () => {
             {isAuthenticated ? 
             <>
                 <li className='hideOnMobile'><Link to={ADMIN} > Main menu</Link></li>
-                <li className='hideOnMobile'><Link to={WEATHER} > Ver el clima</Link></li>
+                <li className='hideOnMobile'><Link to={WEATHER} > Weather API </Link></li>
+                <li className='hideOnMobile'><Link to={POSTS} > POSTS API </Link></li>
                 <li className='hideOnMobile' onClick={handleLogout} > <a href="#">Logout</a></li>
             </>
             : 

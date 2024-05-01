@@ -5,7 +5,7 @@ import {useState} from 'react'
 const API_KEY = 'e996e8e937fb4c65aee134153243004'
 
 const useWeather = (city = 'london') => {
-    console.log('', city)
+    
     const [weather, setWeather] = useState({})
     const [isLoading, setIsloading] = useState(true)
     

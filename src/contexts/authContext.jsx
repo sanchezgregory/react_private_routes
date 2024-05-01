@@ -27,10 +27,17 @@ export function AuthContextProvider({children}) {
         setIsAuthenticated(false)
     }, [])
 
+    const register = useCallback((data) => {
+        window.localStorage.setItem(data.username , JSON.stringify(data))
+        setIsAuthenticated(true)
+        return true;
+    }, [])
+
     return (
         <AuthContext.Provider value={{
             login,
             logout,
+            register,
             isAuthenticated
             }}>
             {children}

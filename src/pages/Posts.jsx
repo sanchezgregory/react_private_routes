@@ -1,12 +1,35 @@
-import { SEE_POST } from "../config/routes/routes"
+import { useRef } from "react"
+import Post from "../components/Post"
 import { useAppPostContext } from "../contexts/appPostContext"
-import { Link } from 'react-router-dom'
 
 
 export default function Posts() {
 
-  const {posts, isLoading, error} = useAppPostContext()
-    
+    const titleRef = useRef()
+    const bodyRef = useRef()
+    const {posts, filteredPosts, isLoading, isFiltering, filterPost, resetFilter, addPost, load, setLoad} = useAppPostContext()
+
+    const handleSearch = (e) => {
+        const search = e.target.value
+        if (search.length >=3) {
+            filterPost(search)
+        } else {
+            resetFilter()
+        }
+    }
+
+    const onReload = () => {
+        setLoad(!load)
+    }
+
+    const handleAddPost = () => {
+        const post = {
+            title: titleRef.current.value,
+            body: bodyRef.current.value
+        }
+        addPost(post)
+    }
+
   return (
     <>
         <div className="list-posts">
@@ -20,6 +43,20 @@ export default function Posts() {
                     <table border="1">
                         <thead>
                             <tr>
+                                <td colSpan={2}>
+                                    <button onClick={onReload}>ReloadPosts</button>
+                                    Filter: <input type="text" name="filter" placeholder='filter' onChange={(e) => handleSearch(e)}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan={2}>
+                                    Title <input type="text" name="title" ref={titleRef}/>
+                                    Body: <input type="text" name="body" ref={bodyRef}/>
+                                    <button onClick={handleAddPost}>+</button>
+                                </td>
+
+                            </tr>
+                            <tr>
                                 <th>
                                     Title
                                 </th>
@@ -29,20 +66,24 @@ export default function Posts() {
                             </tr>
                         </thead>
                         <tbody>
-                            {posts && posts.length > 0 ? posts.map(post => (
+                            {isFiltering && filteredPosts.length > 0 ? filteredPosts.map(post => (
+                                <tr key={post.id}>
+                                    <Post post={post}/>
+                                </tr>
+                            )) 
+                            :
+                                posts && posts.length > 0 ? posts.map(post => (
                                 <tr key={post.id}> 
-                                    <td>{post.title} </td>
-                                    <td> 
-                                        <Link to={`${SEE_POST}/${post.id}`}> See </Link> |
-                                        Delete | 
-                                        Update
-                                    </td>
+                                   <Post post={post}/>
                                 </tr>
                             )) : 
-                            <div>
-                                No hay datos para mostrar
-                            </div>
+                            <tr>
+                                <td colSpan={2}>
+                                    No hay datos para mostrar
+                                </td>
+                            </tr>
                             }
+                            
                         </tbody>
                     </table>
                 </div>

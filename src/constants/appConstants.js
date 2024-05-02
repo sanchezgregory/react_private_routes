@@ -1,0 +1,6 @@
+export const ADD = 'add_post'
+export const REMOVE = 'remove_post'
+export const FILTER = 'filter_post'
+export const UPDATE = 'update_post'
+export const SET = 'set_posts'
+export const RESET = 'reset _filter'

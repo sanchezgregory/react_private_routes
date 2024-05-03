@@ -146,6 +146,50 @@ form{
   text-decoration: none;
 }
 
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-list-title {
+  width: 600px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.input-text {
+  width: 300px;
+  height: 40px;
+  border-color: #000;
+  border-radius: 10px 0 0 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-right: 1px;
+  flex-grow: 1;
+}
+
+.todo-button {
+  height: 40px;
+  width: 100px;
+  border-color: #000;
+  border-radius: 0  10px 10px 0;
+  background: blue;
+  color: white;
+}
+
+.list-item {
+  width: 500px;
+  background: rgba(194, 169, 169, 0.726);
+  padding: 10px;
+  margin:10px;
+  border:#000 solid 1px;
+}
+
 @media(max-width:800px) {
   .hideOnMobile {
     display: none;

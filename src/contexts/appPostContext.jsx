@@ -1,10 +1,11 @@
 import { useReducer } from 'react'
 import {createContext, useEffect, useState, useContext} from 'react'
 import postReducer from '../reducers/postReducer'
-import { ADD, FILTER, SET, RESET } from '../constants/appConstants'
+import { ADD, FILTER, SET, RESET, LOAD_DB } from '../constants/appConstants'
 
 export const AppPostContext = createContext()
-const URL = 'https://jsonplaceholder.typicode.com/posts'
+const URL_POST = 'https://jsonplaceholder.typicode.com/posts'
+const URL_DB = 'https://dragonball-api.com/api/characters'
 
 export function AppPostContextProvider({ children }) {
 
@@ -31,10 +32,13 @@ export function AppPostContextProvider({ children }) {
     const resetFilter = () => {
         dispatch({type:RESET})
     }
+    const loadDragonBallApi = (chars) => {
+        dispatch({type:LOAD_DB, payload:chars})
+    }
 
     useEffect(() => {
             
-        fetch(URL)
+        fetch(URL_POST)
         .then(response => response.json())
         .then(data => {
             loadPosts(data)
@@ -44,13 +48,27 @@ export function AppPostContextProvider({ children }) {
             setError(error)
             console.error('Error fetching posts:', error)
             setIsLoading(false)
-        });            
+        });      
+                   
+        fetch(URL_DB)
+        .then(response => response.json())
+        .then(data => {
+            loadDragonBallApi(data)
+            setIsLoading(false)
+        })
+        .catch(error => {
+            setError(error)
+            console.error('Error fetching chars:', error)
+            setIsLoading(false)
+        });      
+
     }, [load]);
 
 
     return (
         <AppPostContext.Provider value={{ 
             posts: state.posts,
+            chars: state?.chars?.items ?? [],
             filteredPosts: state.filteredPosts,
             isFiltering: state.isFiltering,
             filterPost,

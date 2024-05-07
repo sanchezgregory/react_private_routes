@@ -1,4 +1,4 @@
-import { ADD, FILTER, REMOVE, UPDATE, SET , RESET} from '../constants/appConstants'
+import { ADD, FILTER, REMOVE, UPDATE, SET , RESET, LOAD_DB} from '../constants/appConstants'
 
 export default function postReducer(state, action){
 
@@ -29,6 +29,12 @@ export default function postReducer(state, action){
                 ...state,
                 posts: action.payload,
                 filteredPosts: action.payload
+            }
+        case LOAD_DB:
+            return {
+                ...state,
+                chars: action.payload,
+                filteredChars: action.payload
             }
         
         default :

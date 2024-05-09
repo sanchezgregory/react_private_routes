@@ -2,20 +2,21 @@ import { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
-display: flex;
-flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
-flex-direction: row;
-padding: 5px;
-height: 50px;
-justify-content: space-between;
-align-items: center;
-border-radius: 5px;
-height: auto;
-transition: all .3s ease;
-  &:hover {
-    background: white;
-    color:#000;
-  }
+  display: flex;
+  flex-wrap: ${props => (props.wrap ? 'wrap' : 'nowrap')};
+  flex-direction: column;
+  padding: 5px;
+  width: 450px;
+  height: 100px;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 5px;
+  background: #92caeb;
+  transition: all .3s ease;
+    &:hover {
+      background: white;
+      color:#000;
+    }
 `
 
 const Input = styled.input`
@@ -25,7 +26,7 @@ const Input = styled.input`
 `
 
 const Button = styled.button`
-  width:60px;
+  width:90px;
   height: 40px;
   border-radius: 5px;
   background: ${props => props.delete ? 'red' : props.update ? 'green' : 'blue'};
@@ -37,7 +38,7 @@ const ToRight = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   width: 100%;
-  margin-top: 20px;
+  gap: 3px;
 `
 
 export const ListItem = ({item, onUpdate, onDelete}) => {
@@ -89,18 +90,17 @@ export const ListItem = ({item, onUpdate, onDelete}) => {
       <Container>
           {item.title} 
           <br />Completed: {item.completed}
-          <div className="buttns">
+          <ToRight>
               <Button onClick={() => setIsEdit(true)} >Edit</Button>
               <Button onClick={() => setIsDelete(true)} >Delete</Button>
-          </div>
+          </ToRight>
       </Container>
     )
 }
   return (
-    <div className='list-item'>
-
+    <>
         {isEdit ? <EditItem /> : isDelete ?  <DeleteItem /> : <Item />  } 
-        
-    </div>
+    </>
+    
   )
 }

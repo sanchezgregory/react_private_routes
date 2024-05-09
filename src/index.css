@@ -130,6 +130,24 @@ form{
   cursor: pointer;
 }
 
+.btn1 {
+  margin: 10px 5px;
+  width: 76px;
+  height: 31px;
+  border: 2px solid #000;
+  font-weight: 700;
+  font-size: 11px;
+  color: #000;
+  background: #fff;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+
+}
+
 .link{
   color: #000;
   font-family: 'Montserrat light';
@@ -139,15 +157,12 @@ form{
   text-decoration: none;
 }
 
-/* .appContainer {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-top: 30px;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-} */
+.imgDB {
+  position: absolute;
+  height:300px;
+  width:60%;
+  top: -15px;
+}
 
 .todo-list-title {
   width: 600px;
@@ -205,19 +220,7 @@ form{
 .btn-delete-item {
   background: red;
 }
-.list-item {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  border-radius: 10px;
-  background: rgb(2, 8, 83);
-  width: 400px;
-  padding: 10px;
-  margin:6px;
-  border:#000 solid 1px;
-  color: white;
-  border-bottom: #FFFFFF solid 3px;
-  border-right: #FFFFFF solid 3px;
-  
-}
+
 .form-edit-item {
   height: 50px;
 }

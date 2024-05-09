@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useRef } from 'react'
 import { ListItem } from '../components/ListItem'
+import '../assets/todo.css'
 
 export const TodoList = () => {
 
@@ -33,18 +34,20 @@ export const TodoList = () => {
 
     return (
         <>
-            <div className='todo-list-title'>
-                <h2>Lista de tareas</h2>
-                <input type="text" className='input-text' onChange={handleChange} value={title}/>
-                <button onClick={handleAddItem} className='todo-button'>Agregar </button>
-            </div>
-            <div className='todo-list'>
-                {list && list.length > 0 ? 
-                    list.map((item) => (
-                    <ListItem key={item.id} item={item} onUpdate={handleUpdate} onDelete={handleDelete}/>
-                    ))
-                    : <div>No hay datos</div>
-                }
+            <div className="todo-container">
+                <div className='todo-list-title'>
+                    <h2>Lista de tareas</h2>
+                    <input type="text" className='input-text' onChange={handleChange} value={title}/>
+                    <button onClick={handleAddItem} className='todo-button'>Agregar </button>
+                </div>
+                <div className='todo-list'>
+                    {list && list.length > 0 ? 
+                        list.map((item) => (
+                        <ListItem key={item.id} item={item} onUpdate={handleUpdate} onDelete={handleDelete}/>
+                        ))
+                       : <div>No hay datos</div>
+                    }
+                </div>
             </div>
         </>
     )

@@ -1,7 +1,7 @@
 import { useRef } from "react"
 import Post from "../components/Post"
 import { useAppPostContext } from "../contexts/appPostContext"
-
+import '../assets/posts.css'
 
 export default function Posts() {
 
@@ -39,53 +39,31 @@ export default function Posts() {
                 <div className="is-loading">
                     Cargando...
                 </div> : 
-                <div className="table-data">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <td colSpan={2}>
-                                    <button onClick={onReload}>ReloadPosts</button>
-                                    Filter: <input type="text" name="filter" placeholder='filter' onChange={(e) => handleSearch(e)}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colSpan={2}>
-                                    Title <input type="text" name="title" ref={titleRef}/>
-                                    Body: <input type="text" name="body" ref={bodyRef}/>
-                                    <button onClick={handleAddPost}>+</button>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <th>
-                                    Title
-                                </th>
-                                <th>
-                                    Actions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {isFiltering && filteredPosts.length > 0 ? filteredPosts.map(post => (
-                                <tr key={post.id}>
-                                    <Post post={post}/>
-                                </tr>
+                <div className="data-posts">
+                    <div className="data-header">
+                        <button className='btn-reload' onClick={onReload}>Reload Posts</button>
+                        <div className="filter-posts">
+                            <input type="text" name="filter" placeholder='filter' onChange={(e) => handleSearch(e)} id='input-filter'/>
+                        </div>
+                        <div className="add-post">
+                            <input type="text" name="title" ref={titleRef} placeholder="Title"/>
+                            <input type="text" name="body" ref={bodyRef} placeholder="Body"/>
+                            <button onClick={handleAddPost}>+</button>
+                        </div>
+                    </div>
+                    <div className="data-body">
+                    {isFiltering && filteredPosts.length > 0 ? filteredPosts.map(post => (
+                                <Post key={post.id} post={post}/>
                             )) 
                             :
                                 posts && posts.length > 0 ? posts.map(post => (
-                                <tr key={post.id}> 
-                                   <Post post={post}/>
-                                </tr>
+                                   <Post key={post.id} post={post}/>
                             )) : 
-                            <tr>
-                                <td colSpan={2}>
+                                <div className="no-data">
                                     No hay datos para mostrar
-                                </td>
-                            </tr>
+                                </div>
                             }
-                            
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
             }
         </div>
